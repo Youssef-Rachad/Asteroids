@@ -35,7 +35,6 @@ for(i = 0; i < 100; i++){
 document.getElementById('audio_musique').loop = true;
 // État initial du canevas
 ctx.fillRect(0, 0, WIDTH, HEIGHT);
-
 document.getElementById('btn_depart').addEventListener('click', () => {
     // On appuie plus le bouton
     document.getElementById('en_avant').style.visibility = 'hidden';

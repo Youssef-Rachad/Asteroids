@@ -22,8 +22,8 @@ class Vaisseau{
         this.flag = true;
         this.lasers = [];
         this.img = vaisseau_img_3;
-        this.width = this.img.width;
-        this.height = this.img.height;
+        this.width = 45;
+        this.height = 85;
         this.vies = 0;
         this.score = 0;
     }
