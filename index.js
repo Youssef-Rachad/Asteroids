@@ -31,7 +31,11 @@ for(i = 0; i < 100; i++){
     let temp = new Etoile(hasard(0, WIDTH), hasard(-HEIGHT/4, 3*HEIGHT/4), hasard(1,3), couleurs[hasard(0, couleurs.length - 1)], hasard(50, 70)/100);
     etoiles.push(temp);
 }
-
+const ville = new Image();
+ville.addEventListener('load', () => {
+    return;
+});
+ville.src='./images/ville.png';
 document.getElementById('audio_musique').loop = true;
 // État initial du canevas
 ctx.fillRect(0, 0, WIDTH, HEIGHT);
@@ -107,6 +111,7 @@ function dessiner(){
             etoiles[i].bouge();
             etoiles[i].dessine();
         }
+        ctx.drawImage(ville, 0, HEIGHT - 140);
         // Déplacer les vaisseau.lasers
         for(i = 0; i < vaisseau.lasers.length; i++){
             vaisseau.lasers[i].bouge();

@@ -30,31 +30,33 @@
             <div id="audio_controle">
                 <span>Contrôle audio</span>
                 <p>Musique</p>
-                <input type="range" min="0" max="100"  id="audio_controle_musique">
+                <input type="range" min="0" max="100" value="100" id="audio_controle_musique">
                 <p>Effets Sonores</p>
-                <input type="range" min="0" max="100"  id="audio_controle_sfx">
+                <input type="range" min="0" max="100" value="100" id="audio_controle_sfx">
             </div>
         </main>
-        <audio id="audio_a_sur_v">
-            <source src="./audio/asteroide_sur_vaisseau.wav" type="audio/wav">
-        </audio>
-        <audio id="audio_laser">
-            <source src="./audio/laser.wav" type="audio/wav">
-        </audio>
-        <audio id="audio_l_sur_a">
-            <source src="./audio/laser_sur_asteroide.wav" type="audio/wav">
-        </audio>
-        <audio id="audio_musique">
-            <source src="./audio/Blazer_Rail.wav" type="audio/wav">
-        </audio>
-        <!-- Composantes du jeu -->
-        <script src="outils.js"></script>
-        <script src="audio.js"></script>
-        <script src="vaisseau.js"></script>
-        <script src="medkit.js"></script>
-        <script src="etoile.js"></script>
-        <script src="asteroide.js"></script>
-        <!-- Script principal -->
-        <script src="index.js"></script>
+        <!--
+            <a href='https://www.freepik.com/vectors/star'>Star vector created by upklyak - www.freepik.com</a>-->
+            <audio id="audio_a_sur_v">
+                <source src="./audio/asteroide_sur_vaisseau.wav" type="audio/wav">
+            </audio>
+            <audio id="audio_laser">
+                <source src="./audio/laser.wav" type="audio/wav">
+            </audio>
+            <audio id="audio_l_sur_a">
+                <source src="./audio/laser_sur_asteroide.wav" type="audio/wav">
+            </audio>
+            <audio id="audio_musique">
+                <source src="./audio/Blazer_Rail.wav" type="audio/wav">
+            </audio>
+            <!-- Composantes du jeu -->
+            <script src="outils.js"></script>
+            <script src="audio.js"></script>
+            <script src="vaisseau.js"></script>
+            <script src="medkit.js"></script>
+            <script src="etoile.js"></script>
+            <script src="asteroide.js"></script>
+            <!-- Script principal -->
+            <script src="index.js"></script>
     </body>
 </html>

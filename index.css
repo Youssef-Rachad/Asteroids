@@ -4,6 +4,11 @@
     padding:0;
     box-sizing:border-box;
 }
+body {
+    overflow:hidden;
+    background:url('./images/arriere_plan.jpg') no-repeat;
+    background-size:cover;
+}
 .flexContainer {
     display:flex;
     justify-content:center;
@@ -16,7 +21,7 @@
         width: 300%;
         height: 300%;
     }
-    25% {
+    75% {
         margin-left: -25%;
         margin-top: 25%;
         width: 150%;
@@ -37,11 +42,12 @@
     height:100%;
     animation-duration:2s;
     animation-name:entrer;
+    z-index:99;
 }
 #en_arriere {
     visibility:hidden;
     position:absolute;
-    top:50%;
+    top:75%;
     left:50%;
     transform:translate(-50%, -50%);
     height:100%;
@@ -83,6 +89,14 @@
     position:absolute;
     bottom:40px;
     left:40px;
+    height:25vh;
+    font-family:"Ubuntu Mono";
+    background:black;
+    color:white;
+    padding:1rem;
+}
+#audio_controle span{
+    font-size:2rem;
 }
 .audio_boite_conteneur {
     display:flex;

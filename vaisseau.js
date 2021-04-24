@@ -1,14 +1,14 @@
-var vaisseau_img_3 = new Image();
+const vaisseau_img_3 = new Image();
 vaisseau_img_3.onload = () =>{
     return;
 }
 vaisseau_img_3.src = './images/vaisseau_3.png';
-var vaisseau_img_1 = new Image();
+const vaisseau_img_1 = new Image();
 vaisseau_img_1.onload = () =>{
     return;
 }
 vaisseau_img_1.src = './images/vaisseau_1.png';
-var vaisseau_img_2 = new Image();
+const vaisseau_img_2 = new Image();
 vaisseau_img_2.onload = () =>{
     return;
 }
