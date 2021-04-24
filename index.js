@@ -32,6 +32,7 @@ for(i = 0; i < 100; i++){
     etoiles.push(temp);
 }
 
+document.getElementById('audio_musique').loop = true;
 // État initial du canevas
 ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
@@ -39,6 +40,7 @@ document.getElementById('btn_depart').addEventListener('click', () => {
     // On appuie plus le bouton
     document.getElementById('en_avant').style.visibility = 'hidden';
     document.getElementById('en_arriere').style.visibility = 'visible';
+    document.getElementById('audio_musique').play();
 });
 // Bouton de départ
 document.getElementById('btn_jouer').addEventListener('click', () => {
@@ -119,6 +121,7 @@ function dessiner(){
             // ou un astéroïde atteint la base
             if(collision_cercle_rectangle(asteroides[i], vaisseau) || asteroides[i].y +23 >= HEIGHT){
                 // On enlève l'astéroïdes en collision
+                document.getElementById('audio_a_sur_v').play();
                 asteroides[i] = null;
                 asteroides.splice(i, 1);
                 // On perd une vie, changer l'image
@@ -141,6 +144,7 @@ function dessiner(){
             for(j = 0; j < vaisseau.lasers.length; j++){
                 if(asteroides[i] && collision_cercle_rectangle(asteroides[i], vaisseau.lasers[j])){
                     asteroides[i].vies -= 1;
+                    document.getElementById('audio_l_sur_a').play();
                     if(asteroides[i].vies == 0) {
                         // On remplace l'astéroïde
                         asteroides[i] = null;

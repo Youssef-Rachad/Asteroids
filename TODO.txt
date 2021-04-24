@@ -1,7 +1,6 @@
 À FAIRE:
 
 -! Documentation
--? Effet sonores
 
 ACCOMPLI:
 
@@ -13,6 +12,7 @@ ACCOMPLI:
 - Générer Météores infiniment 22 avril
 - Règles de jeu 23 avril
 - déplacer le changement d'image du vaisseau dans les fonctions bouge -> plus stable
+-? Effet sonores 24 avril
 
 DÉFI:
 

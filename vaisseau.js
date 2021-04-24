@@ -2,17 +2,17 @@ var vaisseau_img_3 = new Image();
 vaisseau_img_3.onload = () =>{
     return;
 }
-vaisseau_img_3.src = './vaisseau_3.png';
+vaisseau_img_3.src = './images/vaisseau_3.png';
 var vaisseau_img_1 = new Image();
 vaisseau_img_1.onload = () =>{
     return;
 }
-vaisseau_img_1.src = './vaisseau_1.png';
+vaisseau_img_1.src = './images/vaisseau_1.png';
 var vaisseau_img_2 = new Image();
 vaisseau_img_2.onload = () =>{
     return;
 }
-vaisseau_img_2.src = './vaisseau_2.png';
+vaisseau_img_2.src = './images/vaisseau_2.png';
 
 class Vaisseau{
     constructor(x, y) {
@@ -79,6 +79,7 @@ class Vaisseau{
         if (this.flag){
             let temp = this.img.src.split('_');
             this.img.src = `${temp[0]}_${this.vies}_bouge.png`;
+            document.getElementById('audio_laser').play();
             for(let i = 1; i <= this.score/500 + 1; i++){
                 this.lasers.unshift(new Laser(vaisseau.x+25, vaisseau.y + i*10, couleurs[hasard(0, couleurs.length-1)]));
             }

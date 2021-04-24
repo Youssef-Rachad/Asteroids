@@ -79,3 +79,17 @@
     transform:translate(-50%, 0);
     max-width:100px;
 }
+#audio_controle {
+    position:absolute;
+    bottom:40px;
+    left:40px;
+}
+.audio_boite_conteneur {
+    display:flex;
+}
+.audio_boite {
+    border:2px solid black;
+    width:10px;
+    height:10px;
+}
+
