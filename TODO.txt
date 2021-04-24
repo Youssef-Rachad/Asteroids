@@ -1,0 +1,35 @@
+À FAIRE:
+
+-! Documentation
+-? Effet sonores
+
+ACCOMPLI:
+
+- Étoiles + Vaisseau 14 avril 2021
+- Lasers 16 avril 2021
+- Touches multiples 18 avril 2021
+- Météores + Collisions + Nouveau look au vaisseau (meilleur contour pour collision) 19 avril 2021
+- 3 vies 21 avril 2021
+- Générer Météores infiniment 22 avril
+- Règles de jeu 23 avril
+- déplacer le changement d'image du vaisseau dans les fonctions bouge -> plus stable
+
+DÉFI:
+
+- Fusée feu seulement quand déplacer (+/-) 21 avril 2021
+- astéroïdes différentes vitesses (PLUS ROTATION!!!)
+- Varieté astéroïdes (3/4 modèles)
+- Différents astéroides prennent plus de lasers à détruire
+- Génération de astéroïdes
+- Logo
+- Trajectoire asteroide diagonales
+- monde en cylindre
+
+- pouvoirs bonis
+- niveaux de jeu
+
+-->
+22/04:
+ctx.save && restore() sont des méthodes couteuses quant au runtime;
+mieux vaut définir la couleur à chaque fois
+ctx.beginPath() rend les styles plus stables

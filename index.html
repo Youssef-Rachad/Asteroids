@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <!-- icone et titre de l'onglet -->
+        <title>Astéroïdes</title>
+        <link rel="icon" href="./icone.png">
+        <!-- La police Ubuntu Mono de Google fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        <!-- styles de la page -->
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <main class="flexContainer">
+            <canvas id="monCanvas" width="500" height="650" style="border:1px solid black;"></canvas>
+            <div id="en_avant">
+                <img src="logo.png" alt="err404" id="logo">
+                <button id="btn_depart" class="btn">Départ</button>
+                <!--
+                    Police: Zen Dots sur google fonts
+                    inspiré par le logo de Atari
+                -->
+                <img src="auteur.png" alt="err404" id="auteur">
+            </div>
+            <div id="en_arriere">
+                <img src="regles.png" alt="err404" width="250">
+                <button id="btn_jouer" class="btn">Jouer</button>
+            </div>
+        </main>
+        <!-- Composantes du jeu -->
+        <script src="outils.js"></script>
+        <script src="vaisseau.js"></script>
+        <script src="medkit.js"></script>
+        <script src="etoile.js"></script>
+        <script src="asteroide.js"></script>
+        <!-- Script principal -->
+        <script src="index.js"></script>
+    </body>
+</html>
