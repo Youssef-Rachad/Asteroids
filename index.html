@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <!-- icone et titre de l'onglet -->
         <title>Astéroïdes</title>
-        <link rel="icon" href="./icone.png">
+        <link rel="icon" href="./images/icone.png">
         <!-- La police Ubuntu Mono de Google fonts -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -13,20 +13,45 @@
     </head>
     <body>
         <main class="flexContainer">
-            <canvas id="monCanvas" width="500" height="650" style="border:1px solid black;"></canvas>
+            <canvas id="monCanvas" width="600" height="650" style="border:1px solid black;"></canvas>
+            <!-- titres -->
+
             <div id="en_avant">
-                <img src="logo.png" alt="err404" id="logo">
+                <img src="./images/logo.png" alt="err404" id="logo">
                 <button id="btn_depart" class="btn">Départ</button>
+
                 <!--
                     Police: Zen Dots sur google fonts
                     inspiré par le logo de Atari
                 -->
-                <img src="auteur.png" alt="err404" id="auteur">
+                <img src="./images/auteur.png" alt="err404" id="auteur">
             </div>
+
             <div id="en_arriere">
-                <img src="regles.png" alt="err404" width="250">
-                <button id="btn_jouer" class="btn">Jouer</button>
+                <img src="./images/regles.png" alt="err404" width="250">
+                <img src="./images/deplacement.png" alt="err404" width="250">
+                <div id="btns">
+                    <button id="btn_campagne" class="btn">Campagne</button>
+                    <button id="btn_arcade" class="btn">Arcade</button>
+                </div>
             </div>
+            <!-- fin de titre -->
+
+            <!-- Jeu Perdu -->
+            <div id="perdu">
+                <h1>PERDU!!!</h1>
+                <p>Tu as eu un score de:</p> <span id="perdu_score_span">score</span>
+                <button class="btn" id="btn_perdu">Rejouer</button>
+            </div>
+
+            <!-- Scores -->
+            <div id="scores">
+                <h2>Meilleur Score:</h2>
+                <span>Arcade:</span><span id="scores_arcade_span"></span><span>pts</span>
+                <br>
+                <span>Campagne:</span><span id="scores_campagne_span"></span><span>pts</span>
+            </div>
+            <!-- controle audio -->
             <div id="audio_controle">
                 <span>Contrôle audio</span>
                 <p>Musique</p>
@@ -34,29 +59,44 @@
                 <p>Effets Sonores</p>
                 <input type="range" min="0" max="100" value="100" id="audio_controle_sfx">
             </div>
+            <!-- fin de controle audio -->
         </main>
         <!--
-            <a href='https://www.freepik.com/vectors/star'>Star vector created by upklyak - www.freepik.com</a>-->
-            <audio id="audio_a_sur_v">
-                <source src="./audio/asteroide_sur_vaisseau.wav" type="audio/wav">
-            </audio>
-            <audio id="audio_laser">
-                <source src="./audio/laser.wav" type="audio/wav">
-            </audio>
-            <audio id="audio_l_sur_a">
-                <source src="./audio/laser_sur_asteroide.wav" type="audio/wav">
-            </audio>
-            <audio id="audio_musique">
-                <source src="./audio/Blazer_Rail.wav" type="audio/wav">
-            </audio>
-            <!-- Composantes du jeu -->
-            <script src="outils.js"></script>
-            <script src="audio.js"></script>
-            <script src="vaisseau.js"></script>
-            <script src="medkit.js"></script>
-            <script src="etoile.js"></script>
-            <script src="asteroide.js"></script>
-            <!-- Script principal -->
-            <script src="index.js"></script>
+            source de l'arriere_plan
+            <a href='https://www.freepik.com/vectors/star'>Star vector created by upklyak - www.freepik.com</a>
+        -->
+
+        <!-- balises audios -->
+        <audio id="audio_a_sur_v">
+            <source src="./audio/asteroide_sur_vaisseau.wav" type="audio/wav">
+        </audio>
+        <audio id="audio_laser">
+            <source src="./audio/laser.wav" type="audio/wav">
+        </audio>
+        <audio id="audio_l_sur_a">
+            <source src="./audio/laser_sur_asteroide.wav" type="audio/wav">
+        </audio>
+        <audio id="audio_musique">
+            <source src="./audio/Blazer_Rail.wav" type="audio/wav">
+        </audio>
+        <!-- -->
+
+        <!-- Composantes du jeu -->
+        <script src="meilleur_score.js"></script>
+        <script src="outils.js"></script>
+        <script src="clavier.js"></script>
+        <script src="ressources.js"></script>
+        <!--<script src="joueur.js"></script>-->
+        <script src="laser.js"></script>
+        <script src="vaisseau.js"></script>
+        <script src="pouvoirs.js"></script>
+        <script src="etoile.js"></script>
+        <script src="asteroide.js"></script>
+        <!-- Modes de jeu -->
+        <script src="mode_arcade.js"></script>
+        <script src="mode_campagne.js"></script>
+        <!-- Script principal -->
+        <script src="index.js"></script>
+
     </body>
 </html>

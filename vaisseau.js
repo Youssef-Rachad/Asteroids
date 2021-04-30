@@ -1,37 +1,21 @@
-const vaisseau_img_3 = new Image();
-vaisseau_img_3.onload = () =>{
-    return;
-}
-vaisseau_img_3.src = './images/vaisseau_3.png';
-const vaisseau_img_1 = new Image();
-vaisseau_img_1.onload = () =>{
-    return;
-}
-vaisseau_img_1.src = './images/vaisseau_1.png';
-const vaisseau_img_2 = new Image();
-vaisseau_img_2.onload = () =>{
-    return;
-}
-vaisseau_img_2.src = './images/vaisseau_2.png';
-
 class Vaisseau{
     constructor(x, y) {
-        this.x = hasard(WIDTH/5, 4*WIDTH/5);
-        this.y = hasard(HEIGHT-150, HEIGHT-100);
+        this.x = x || hasard(WIDTH/5, 4*WIDTH/5);
+        this.y = y || hasard(HEIGHT-150, HEIGHT-100);
         this.compteur = 0;
         this.flag = true;
         this.lasers = [];
-        this.img = vaisseau_img_3;
+        this.img = vaisseau_img;
         this.width = 45;
         this.height = 85;
-        this.vies = 0;
+        this.vies = 3;
         this.score = 0;
     }
     img_bouge_pas(){
         let temp = this.img.src.split('_');
         this.img.src = `${temp[0]}_${this.vies}.png`;
     }
-    trace(){
+    dessine(){
         ctx.drawImage(this.img, this.x, this.y);
         this.compteur += 1;
         if (this.compteur >= 30){
@@ -39,20 +23,16 @@ class Vaisseau{
             this.flag = true;
         }
     }
-    blessure(nbr) {
-        if(nbr == 1){
-            this.img = vaisseau_img_1;
-        }
-        else if(nbr == 2){
-            this.img = vaisseau_img_2;
-        }
+    changeImage() {
+        let temp = this.img.src.split('_');
+        this.img.src = `${temp[0]}_${this.vies}.png`;
     }
     init() {
         this.x = hasard(WIDTH/5, 4*WIDTH/5);
         this.y = hasard(HEIGHT-150, HEIGHT-100);
         this.score = 0;
         this.vies = 3;
-        this.img = vaisseau_img_3;
+        vaisseau_img.src = './images/vaisseau_3.png';
     }
     //fonctions en fleche pour les callbacks dans l'objet clavier
     descend = () => {
@@ -81,26 +61,17 @@ class Vaisseau{
             this.img.src = `${temp[0]}_${this.vies}_bouge.png`;
             document.getElementById('audio_laser').play();
             for(let i = 1; i <= this.score/500 + 1; i++){
-                this.lasers.unshift(new Laser(vaisseau.x+25, vaisseau.y + i*10, couleurs[hasard(0, couleurs.length-1)]));
+                lasers.unshift(new Laser(this.x+25, this.y + i*10, couleurs[hasard(0, couleurs.length-1)]));
             }
             this.flag = false;
             this.compteur = 0;
         }
     }
 }
-class Laser{
-    constructor(x, y, couleur) {
-        this.x = x;
-        this.y = y;
-        this.width = 5;
-        this.height = 10;
-        this.couleur = couleur;
-    }
-    bouge() {
-        this.y -= 5;
-    }
-    dessine() {
-        ctx.fillStyle = this.couleur;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+class Vaisseau_Clone extends Vaisseau {
+    constructor(x, y){
+        super(x, y);
+        this.img.src = './images/vaisseau_3.png';
+        this.compteur_limite = 0;
     }
 }

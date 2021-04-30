@@ -4,6 +4,7 @@ const jdc = [
     ['#18186b', '#7171f5', '#13599e', 'black', '#3eedad'],
     []
 ]
+//fonction pour dessiner une ellipse avec une couleur
 ellipse = (x, y, rx, ry, theta, couleur) => {
     ctx.fillStyle = couleur;
     ctx.beginPath();
@@ -13,6 +14,7 @@ ellipse = (x, y, rx, ry, theta, couleur) => {
     ctx.strokeStyle = '#000000';
     ctx.stroke();
 }
+// tableau de fonctions qui indiquent comment dessiner les astéroïdes
 const dessinage = [
     // Style 1
     (x, y)=> {
@@ -71,6 +73,7 @@ const dessinage = [
         ctx.stroke();
     }
     // Style 4
+    // ASTEROIDE EN OR QUI DONNE 50 POINTS
     /*
     (x, y)=> {
         ellipse(x, y, 25, 25, 0, '#18186b');
@@ -100,7 +103,7 @@ class Asteroide{
         this.angle = 0;
         // vitesse et vitess angulaire, au hasard
         this.vitesse_x = hasard(-1, 1);
-        this.vitesse_y = hasard(75,200)/100;
+        this.vitesse_y = hasard(75,150)/100;
         this.v_angulaire = hasard(10, 50)/10;
         // Couleur
         this.c = hasard(0,dessinage.length-1);
@@ -122,8 +125,50 @@ class Asteroide{
         this.angle += this.v_angulaire;
     }
     bouge() {
+        // descendre verticalement
         this.y += this.vitesse_y;
+        // à l'horizontal, quand on dépasse une frontière
+        // on revient de l'autre côté
         this.x = modulo((this.x +this.vitesse_x),WIDTH);
     }
 }
+class Asteroide_Campagne extends Asteroide {
+    constructor(x, y){
+        super(x, y);
+        this.vitesse_x = 0;
+    }
+}
+const formations_asteroides = [
+    [
+        1, 1, 1, 1, 1, 1,
+        0, 1, 0, 1, 0, 1,
+        1, 0, 1, 0, 1, 0,
+        1, 1, 1, 1, 1, 1],
 
+    [
+        1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 0,
+        0, 1, 1, 1, 0, 0,
+        0, 0, 1, 0, 0, 0],
+
+    [
+        0, 1, 0, 1, 0, 1,
+        1, 1, 1, 1, 1, 1,
+        0, 1, 0, 1, 0, 1,
+        1, 1, 1, 1, 1, 1],
+
+    [
+        1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1]
+
+]
+function dessiner_campagne() {
+    for(i = 0; i < 27; i++){
+        if(formations_asteroides[hasard(0,formations_asteroides.length-1)][i]){
+            let b6412 = new Asteroide_Campagne(50+(modulo(i, 7)-1)*100,(Math.floor(i/7)+1)*-500);
+            asteroides.push(b6412);
+        }
+    }
+}

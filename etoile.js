@@ -14,7 +14,7 @@ class Etoile{
     bouge(){
         this.y = (this.y + this.vitesse)%HEIGHT;
     }
-    // comment dessiner l'étoile
+    // dessiner un rectangle selon les paramètres donnés
     dessine(){
         ctx.fillStyle = this.couleur;
         ctx.fillRect(this.x, this.y, this.c, this.c);

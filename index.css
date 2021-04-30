@@ -4,16 +4,23 @@
     padding:0;
     box-sizing:border-box;
 }
+/* garder des dimensions constantes de la page*/
 body {
     overflow:hidden;
     background:url('./images/arriere_plan.jpg') no-repeat;
     background-size:cover;
+    min-width:100vw;
+    max-width:100vw;
+    min-height:100vh;
+    max-height:100vh;
 }
+/* mettre le titre au milieu*/
 .flexContainer {
     display:flex;
     justify-content:center;
     max-height:650px;
 }
+/* animation du titre */
 @keyframes entrer{
     from {
         margin-left: -100%;
@@ -34,6 +41,7 @@ body {
         height: 100%;
     }
 }
+/* premier titre */
 #en_avant {
     position:absolute;
     top:50%;
@@ -44,13 +52,22 @@ body {
     animation-name:entrer;
     z-index:99;
 }
+/* deuxieme titre (avec regle de jeu) */
 #en_arriere {
     visibility:hidden;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
     position:absolute;
-    top:75%;
+    top:65%;
     left:50%;
     transform:translate(-50%, -50%);
     height:100%;
+}
+#en_arriere img {
+    margin-bottom:1rem;
+    padding:1rem;
+    border:1px white dashed;
 }
 #logo {
     position:absolute;
@@ -59,25 +76,26 @@ body {
     transform:translate(-50%, -10%);
     max-width:500px;
 }
+/* la couleur et taille reglees par une classe */
 .btn {
     background: white;
     color: black;
     font-family:'Ubuntu Mono';
     font-size:2rem;
     width:10rem;
+    display:inline;
+}
+/* la position reglee par un id */
+#btns {
+    min-width:22rem;
 }
 #btn_depart {
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%, -50%);
-}
-#btn_jouer {
     position:absolute;
     bottom:50%;
     left:50%;
     transform:translate(-50%, -50%);
 }
+/* mon titre en bas :) */
 #auteur {
     position:absolute;
     bottom:10%;
@@ -85,6 +103,21 @@ body {
     transform:translate(-50%, 0);
     max-width:100px;
 }
+
+#scores {
+    position:absolute;
+    top:250px;
+    left:40px;
+    font-family:"Ubuntu Mono";
+    background:black;
+    color:white;
+    padding:1rem;
+}
+#scores h2 {
+    text-decoration:underline;
+}
+
+/* panneau de controle audio */
 #audio_controle {
     position:absolute;
     bottom:40px;
@@ -98,12 +131,27 @@ body {
 #audio_controle span{
     font-size:2rem;
 }
-.audio_boite_conteneur {
-    display:flex;
-}
-.audio_boite {
-    border:2px solid black;
-    width:10px;
-    height:10px;
-}
 
+#perdu {
+    visibility:hidden;
+    height:100vh;
+    width:600px;
+    position:absolute;
+    z-index:99;
+    font-family:"Ubuntu Mono";
+    background:black;
+    color:white;
+    padding:1rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+#perdu h1 {
+    position:absolute;
+    top:10%;
+}
+#perdu button {
+    position:absolute;
+    bottom:10%;
+}
