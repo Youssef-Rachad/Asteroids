@@ -155,3 +155,19 @@ body {
     position:absolute;
     bottom:10%;
 }
+.perdu_texte {
+    overflow:hidden;
+    border-right: 1px white solid;
+    white-space: nowrap;
+    margin:0 auto;
+    letter-spacing: 0.15em;
+}
+@keyframes ecrire {
+    from {width: 0;}
+    to {width:100%;}
+}
+@keyframes clignoteur {
+    from {border-color: transparent;}
+    50% {border-color: white;}
+    to {border-color:transparent;}
+}

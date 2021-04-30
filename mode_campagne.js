@@ -44,7 +44,8 @@ function jeu_campagne(){
                     ctx.fillRect(0, 0, WIDTH, HEIGHT);
                     document.getElementById('en_avant').style.visibility = 'visible';
                     document.getElementById('perdu').style.visibility = 'visible';
-                    document.getElementById('perdu_score_span').innerText = vaisseau.score
+                    document.getElementById('perdu_score_span').innerText = vaisseau.score;
+                    document.getElementsByClassName('perdu_texte')[0].style.animation = 'ecrire 5s steps(40, jump-end), clignoteur .5s step-end infinite';
                     asteroides = null;
                     if(vaisseau_clone) vaisseau_clone = null;
                     vaisseau.init();
