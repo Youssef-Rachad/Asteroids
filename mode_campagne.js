@@ -15,17 +15,18 @@ function jeu_campagne(){
             etoiles[i].bouge();
             etoiles[i].dessine();
         }
-        ctx.drawImage(ville, 0.5*(WIDTH-ville.width), HEIGHT - 140);
         // Déplacer les vaisseau.lasers
         for(i = 0; i < lasers.length; i++) {
             lasers[i].bouge();
             lasers[i].dessine();
         }
+        // dessiner la terre (après les étoiles)
+        ctx.drawImage(ville, 0.5*(WIDTH-ville.width), HEIGHT - 140);
         // Déplacer les astéroïdes
         for(i = 0; i < asteroides.length; i++){
             asteroides[i].bouge();
             asteroides[i].dessine();
-            // On perd le jeu si on heurte un astéroïde
+            // On perd une vie si on heurte un astéroïde
             // ou un astéroïde atteint la base
             if(collision_cercle_rectangle(asteroides[i], vaisseau) || asteroides[i].y +23 >= HEIGHT){
                 // On enlève l'astéroïdes en collision
@@ -37,36 +38,47 @@ function jeu_campagne(){
                 vaisseau.changeImage();
                 // Vérifier si on a perdu
                 if (vaisseau.vies == 0){
-                    cancelAnimationFrame(jeu_campagne);
-                    if(getMeilleurScore("score_campagne")<vaisseau.score) setMeilleurScore("score_campagne", vaisseau.score);
-                    document.getElementById('scores_campagne_span').innerText = getMeilleurScore("score_campagne");
+                    // arrete le jeu
+                    cancelAnimationFrame(jeu_arcade);
+                    // mettre à jour le score
+                    if(getMeilleurScore("score_arcade")<vaisseau.score) setMeilleurScore("score_arcade", vaisseau.score);
+                    document.getElementById('scores_arcade_span').innerText = getMeilleurScore("score_arcade");
+                    // effacer le canvas
                     ctx.fillStyle = 'black';
                     ctx.fillRect(0, 0, WIDTH, HEIGHT);
+                    // afficher les fenetres «perdu» et «depart»
                     document.getElementById('en_avant').style.visibility = 'visible';
                     document.getElementById('perdu').style.visibility = 'visible';
                     document.getElementById('perdu_score_span').innerText = vaisseau.score;
-                    document.getElementsByClassName('perdu_texte')[0].style.animation = 'ecrire 5s steps(40, jump-end), clignoteur .5s step-end infinite';
+                    document.getElementsByClassName('perdu_texte')[0].style.animation = 'ecrire 5s steps(20, jump-end), clignoteur .5s step-end infinite';
+                    setTimeout(()=>{document.getElementsByClassName('perdu_texte')[0].style.animation = ''}, 5000);
+                    // effacer les astéroïdes et le clône
                     asteroides = null;
                     if(vaisseau_clone) vaisseau_clone = null;
+                    // réinitialiser
                     vaisseau.init();
-                    // prévenir la fonction de continuer
+                    // prévenir animationFrame de continuer
                     return
                 }
+                // aussi mettre a jour le clone
                 if(vaisseau_clone) {
                     vaisseau_clone.vies -= 1;
                     vaisseau_clone.changeImage();
                 }
             }
+            // si le clône heurte un astéroïde
+            // il se désintègre
             if(vaisseau_clone && asteroides[i] && collision_cercle_rectangle(asteroides[i], vaisseau_clone)) {
                 vaisseau_clone = null;
                 document.getElementById('audio_a_sur_v').play();
+                // on enlève l'astéroïde
                 asteroides[i] = null;
                 asteroides.splice(i, 1);
+                // on crée un nouvel astéroïde
                 let b6412 = new Asteroide(hasard(0, WIDTH), -1 * hasard(500, 1500));
                 asteroides.push(b6412);
             }
             // Si un laser atteint un météore, les deux sont éliminés
-            // économies de presque 50 lignes
             for(j=0; j < lasers.length; j++){
                 if(asteroides[i] && collision_cercle_rectangle(asteroides[i], lasers[j])){
                     asteroides[i].vies -= 1;
@@ -86,13 +98,14 @@ function jeu_campagne(){
             }
         }
 
-        // Déplacer le vaisseau
+        // Déplacer les vaisseaux
         if (vaisseau_clone){
             vaisseau_clone.dessine();
             vaisseau_clone.compteur_limite++;
         }
         vaisseau.dessine();
-        // La trousse de secours
+
+        // déplacer et dessiner les pouvoirs
         trousse_secours.dessine();
         trousse_secours.bouge();
         cloneur.dessine();
@@ -119,16 +132,15 @@ function jeu_campagne(){
                 vaisseau_clone = new Vaisseau_Clone(vaisseau.x + 50, vaisseau.y);
             }
             else {
-                vaisseau_clone.compteur_limite += 600;
+                // s'il y a déjà un clone, on ajoute du temps ( millisecondes)
+                vaisseau_clone.compteur_limite -= 600;
             }
         }
         // Tous les vaisseau.lasers hors de la page sont éliminés
-        while(vaisseau.lasers[0] && vaisseau.lasers[0].y <= 30){
-            vaisseau.lasers.pop()
+        while(lasers[0] && lasers[0].y <= 30){
+            lasers.pop()
         }
-        while(vaisseau_clone && vaisseau_clone.lasers[0] && vaisseau_clone.lasers[0].y <= 30){
-            vaisseau_clone.lasers.pop()
-        }
+        // apres un temps, on enlève le clone
         if (vaisseau_clone && vaisseau_clone.compteur_limite>=1800){
             vaisseau_clone.compteur_limite=0;
             vaisseau_clone = null;

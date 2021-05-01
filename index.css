@@ -52,7 +52,15 @@ body {
     animation-name:entrer;
     z-index:99;
 }
-/* deuxieme titre (avec regle de jeu) */
+/* Mettre le titre  au milieu */
+#logo {
+    position:absolute;
+    top:10%;
+    left:50%;
+    transform:translate(-50%, -10%);
+    max-width:500px;
+}
+/* deuxieme titre (avec règles de jeu) */
 #en_arriere {
     visibility:hidden;
     display:flex;
@@ -64,18 +72,13 @@ body {
     transform:translate(-50%, -50%);
     height:100%;
 }
+/* bordure autour des règles */
 #en_arriere img {
     margin-bottom:1rem;
     padding:1rem;
     border:1px white dashed;
 }
-#logo {
-    position:absolute;
-    top:10%;
-    left:50%;
-    transform:translate(-50%, -10%);
-    max-width:500px;
-}
+/* boutons: */
 /* la couleur et taille reglees par une classe */
 .btn {
     background: white;
@@ -86,16 +89,17 @@ body {
     display:inline;
 }
 /* la position reglee par un id */
-#btns {
-    min-width:22rem;
-}
 #btn_depart {
     position:absolute;
     bottom:50%;
     left:50%;
     transform:translate(-50%, -50%);
 }
-/* mon titre en bas :) */
+/* groupe de boutons campagne & arcade */
+#btns {
+    min-width:22rem;
+}
+/* mon titre en bas :^) */
 #auteur {
     position:absolute;
     bottom:10%;
@@ -103,7 +107,7 @@ body {
     transform:translate(-50%, 0);
     max-width:100px;
 }
-
+/* division des scores */
 #scores {
     position:absolute;
     top:250px;
@@ -131,7 +135,7 @@ body {
 #audio_controle span{
     font-size:2rem;
 }
-
+/* fenetre perdu */
 #perdu {
     visibility:hidden;
     height:100vh;
@@ -162,6 +166,7 @@ body {
     margin:0 auto;
     letter-spacing: 0.15em;
 }
+/* animation pour l'écriture sur la fenetre perdu */
 @keyframes ecrire {
     from {width: 0;}
     to {width:100%;}

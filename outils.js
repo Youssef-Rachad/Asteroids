@@ -1,8 +1,15 @@
 // Outils
+
+// fonction rendre un nombre au hasard
+// min & max inclusifs
 function hasard(min, max){
     return Math.floor(Math.random()*(max-min+1)+min);
 }
+
+// jeu de couleurs
 const couleurs = ['blue', 'red', 'green', 'yellow'];
+
+// fonction pour écrire sur le canvas
 function ecriture(x, y, texte){
     ctx.save();
     ctx.font = "25px Ubuntu Mono";
@@ -13,6 +20,7 @@ function ecriture(x, y, texte){
     ctx.fillText(texte, x+10, y+10);
     ctx.restore();
 }
+
 // Javascript modulo bug
 //https://web.archive.org/web/20090717035140if_/javascript.about.com/od/problemsolving/a/modulobug.htm
 function modulo(a, b) {

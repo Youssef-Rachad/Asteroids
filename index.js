@@ -20,7 +20,6 @@ window.requestAnimationFrame =
 
 
 // Joueur
-var lasers = [];
 var vaisseau = new Vaisseau();
 var vaisseau_clone;
 var trousse_secours = new Secours();
@@ -28,32 +27,33 @@ var cloneur = new Clone();
 var niveau = 1;
 
 // Tableau des entités de jeu
-var etoiles = [];
+var lasers = [];
 var asteroides = [];
+var etoiles = [];
 // Créer les étoiles
 for(i = 0; i < 100; i++){
-    let temp = new Etoile(hasard(0, WIDTH), hasard(-HEIGHT/4, 3*HEIGHT/4), hasard(1,3), couleurs[hasard(0, couleurs.length - 1)], hasard(50, 70)/100);
-    etoiles.push(temp);
+    etoiles.push( new Etoile(hasard(0, WIDTH), hasard(-HEIGHT/4, 3*HEIGHT/4), hasard(1,3), couleurs[hasard(0, couleurs.length - 1)], hasard(50, 70)/100));
 }
+
 // État initial du canevas
 ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
 // ---Écouter les bouttons--- \\
 // Bouton de départ
 document.getElementById('btn_depart').addEventListener('click', () => {
-    // On appuie plus le bouton
+    // On remplace la page avant avec la page arriere
     document.getElementById('en_avant').style.visibility = 'hidden';
     document.getElementById('en_arriere').style.visibility = 'visible';
     document.getElementById('audio_musique').volume = document.getElementById('audio_controle_musique').value/100;
     document.getElementById('audio_musique').play();
 });
 document.getElementById('btn_arcade').addEventListener('click', () => {
-    // On appuie plus le bouton
+    // On affiche le jeu
     document.getElementById('en_arriere').style.visibility = 'hidden';
     // Lier le clavier au canevas, sans cliquer
     canvas.setAttribute('tabindex','0');
     canvas.focus();
-    // varaibles initiales
+    // initialiser le vaisseau
     vaisseau.init();
     // Créer les astéroïdes
     asteroides = [];
@@ -67,30 +67,31 @@ document.getElementById('btn_arcade').addEventListener('click', () => {
 
 // Bouton de départ
 document.getElementById('btn_campagne').addEventListener('click', () => {
-    // On enleve le bouton pour jouer
+    // On affiche le jeu
     document.getElementById('en_arriere').style.visibility = 'hidden';
     // Lier le clavier au canevas, sans cliquer
     canvas.setAttribute('tabindex','0');
     canvas.focus();
-    // varaibles initiales
+    // initialiser le vaisseau
     vaisseau.init();
-    niveau = 1;
     // Créer les astéroïdes
     asteroides = [];
-    for(i = 0; i < 27; i++){
-        if(formations_asteroides[hasard(0,formations_asteroides.length-1)][i]){
-            let b6412 = new Asteroide_Campagne(50+(modulo(i, 7)-1)*100,(Math.floor(i/7)+1)*-500);
-            asteroides.push(b6412);
-        }
+    for(i = 0; i < 5; i++){
+        let b6412 = new Asteroide(hasard(WIDTH*0.1, 0.9*WIDTH), -1 * hasard(500, 1500));
+        asteroides.push(b6412);
     }
+
     // on commence Animation Loop
     jeu_campagne();
 });
 
 document.getElementById('btn_perdu').addEventListener('click', () => {
+    // effacer l'écran de «jeu perdu»
     document.getElementById('perdu').style.visibility = 'hidden';
 });
 
+// fonctions pour déplacer
+// doivent être des fonctions flèches pour les callback
 var monter = () => {
     vaisseau.monte();
     if(vaisseau_clone) vaisseau_clone.monte();
@@ -112,6 +113,7 @@ var tirer = () => {
     if(vaisseau_clone) vaisseau_clone.tirer();
 }
 
+
 // Méthode pour traiter plusieurs touches
 const clavier = {
     38 : {actif: false, action: monter},
@@ -130,6 +132,7 @@ document.addEventListener('keydown', (e)=>{
 document.addEventListener('keyup', (e)=>{
     if(clavier[e.keyCode]) {
         clavier[e.keyCode].actif = false;
+        // afficher la bonne image
         vaisseau.img_bouge_pas();
         if(vaisseau_clone) vaisseau_clone.img_bouge_pas();
     }});

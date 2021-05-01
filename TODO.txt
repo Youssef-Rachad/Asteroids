@@ -1,7 +1,5 @@
 À FAIRE:
 
--! Documentation
-
 ACCOMPLI:
 
 - Étoiles + Vaisseau 14 avril 2021
@@ -13,6 +11,7 @@ ACCOMPLI:
 - Règles de jeu 23 avril
 - déplacer le changement d'image du vaisseau dans les fonctions bouge -> plus stable
 -? Effet sonores 24 avril
+-! Documentation
 
 DÉFI:
 

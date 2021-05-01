@@ -1,8 +1,10 @@
 // Trousse de secours pour augmenter les vies du vaisseau
 class Pouvoir {
     constructor() {
+        // position (x, y)
         this.x = hasard(WIDTH/4, 3*WIDTH/4) -100;
         this.y = hasard(0, HEIGHT/2);
+        // pour le déplacement
         this.theta = hasard(1, 10);
         // rayon
         this.r = 15;
@@ -43,17 +45,8 @@ class Clone extends Pouvoir {
         ctx.moveTo(this.x - 0.5*this.r, this.y + 0.5*this.r);
         ctx.lineTo(this.x + 0.5*this.r, this.y + 0.5*this.r);
         ctx.lineTo(this.x, this.y - 0.5*this.r);
-
-        //closePath se charge fermer la forme
-        //=> pas besoin d'un dernier côté
-        //ctx.lineTo(this.x - 0.5*this.r, this.y + 0.5*this.r);
-
         ctx.closePath();
         ctx.stroke();
         ctx.fill();
-
     }
-    //init() {
-    //var vaisseau_clone = new Vaisseau();
-    //}
 }
